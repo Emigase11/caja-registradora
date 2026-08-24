@@ -1,5 +1,8 @@
 ﻿const string NOMBRE_COMERCIO = "KIOSCO EL RECREO";
 
+const decimal DESCUENTO_ALTO = 0.10m;
+const decimal DESCUENTO_MEDIO = 0.05m;
+
 Console.WriteLine($" {NOMBRE_COMERCIO} ");
 
 Console.Write("Nombre del cajero: ");
@@ -45,8 +48,24 @@ do
     }
 } while (opcion != 2);
 
+decimal subtotal = total;
+decimal descuento = 0;
+
+if (subtotal > 50000)
+{
+    descuento = subtotal * DESCUENTO_ALTO;
+}
+else if (subtotal > 20000)
+{
+    descuento = subtotal * DESCUENTO_MEDIO;
+}
+
+total = subtotal - descuento;
+
 Console.WriteLine();
 Console.WriteLine($"Productos: {cantidadProductos}");
+Console.WriteLine($"Subtotal: {subtotal}");
+Console.WriteLine($"Descuento: {descuento}");
 Console.WriteLine($"Total: {total}");
 
 Console.ReadLine();
