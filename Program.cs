@@ -4,6 +4,7 @@ const decimal DESCUENTO_ALTO = 0.10m;
 const decimal DESCUENTO_MEDIO = 0.05m;
 const decimal DESCUENTO_EFECTIVO = 0.10m;
 const decimal RECARGO_CREDITO = 0.15m;
+const int ANCHO_TICKET = 30;
 
 Console.WriteLine($" {NOMBRE_COMERCIO} ");
 
@@ -99,10 +100,23 @@ do
     }
 } while (medioPago < 1 || medioPago > 3);
 
+string linea = "";
+for (int i = 0; i < ANCHO_TICKET; i++)
+{
+    linea = linea + "-";
+}
+
 Console.WriteLine();
+Console.WriteLine(linea);
+Console.WriteLine($"{NOMBRE_COMERCIO,23}");
+Console.WriteLine(linea);
+Console.WriteLine($"Cajero: {nombreCajero}");
 Console.WriteLine($"Productos: {cantidadProductos}");
-Console.WriteLine($"Subtotal: {subtotal}");
-Console.WriteLine($"Descuento: {descuento}");
-Console.WriteLine($"Total: {total}");
+Console.WriteLine($"Subtotal: {subtotal:0.##}");
+Console.WriteLine($"Descuento: {descuento:0.##}");
+Console.WriteLine($"Recargo: {recargo:0.##}");
+Console.WriteLine(linea);
+Console.WriteLine($"TOTAL: {total:0.##}");
+Console.WriteLine(linea);
 
 Console.ReadLine();
