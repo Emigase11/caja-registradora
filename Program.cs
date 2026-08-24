@@ -2,6 +2,8 @@
 
 const decimal DESCUENTO_ALTO = 0.10m;
 const decimal DESCUENTO_MEDIO = 0.05m;
+const decimal DESCUENTO_EFECTIVO = 0.10m;
+const decimal RECARGO_CREDITO = 0.15m;
 
 Console.WriteLine($" {NOMBRE_COMERCIO} ");
 
@@ -61,6 +63,41 @@ else if (subtotal > 20000)
 }
 
 total = subtotal - descuento;
+
+decimal recargo = 0;
+int medioPago;
+
+do
+{
+    Console.WriteLine();
+    Console.WriteLine("Medio de pago:");
+    Console.WriteLine("1 - Efectivo");
+    Console.WriteLine("2 - Débito");
+    Console.WriteLine("3 - Crédito");
+    Console.Write("Opción: ");
+    medioPago = int.Parse(Console.ReadLine());
+
+    switch (medioPago)
+    {
+        case 1:
+            decimal descuentoEfectivo = total * DESCUENTO_EFECTIVO;
+            descuento = descuento + descuentoEfectivo;
+            total = total - descuentoEfectivo;
+            break;
+
+        case 2:
+            break;
+
+        case 3:
+            recargo = total * RECARGO_CREDITO;
+            total = total + recargo;
+            break;
+
+        default:
+            Console.WriteLine("Opción inválida. Intente de nuevo.");
+            break;
+    }
+} while (medioPago < 1 || medioPago > 3);
 
 Console.WriteLine();
 Console.WriteLine($"Productos: {cantidadProductos}");
